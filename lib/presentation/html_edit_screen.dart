@@ -20,7 +20,7 @@ class HtmlEditScreen extends ConsumerWidget {
           HtmlEditor(
             controller: controller,
             htmlEditorOptions: HtmlEditorOptions(initialText: initialText),
-            otherOptions: OtherOptions(height: 1000.0),
+            otherOptions: OtherOptions(height: MediaQuery.of(context).size.height * 0.8),
           ),
         ],
       ),
