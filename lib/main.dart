@@ -5,7 +5,6 @@ import 'package:html_editor/data/newsletter_repository.dart';
 import 'package:html_editor/presentation/html_edit_screen.dart';
 import 'package:html_editor/util/async_value_widget.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
-import 'package:file_picker/file_picker.dart';
 
 void main() => runApp(ProviderScope(child: HtmlEditorExampleApp()));
 
@@ -39,11 +38,6 @@ class _HtmlEditorExampleState extends ConsumerState<HtmlEditorExample> {
   Widget build(BuildContext context) {
     final htmlResult = ref.watch(getHtmlProvider);
     return GestureDetector(
-      onTap: () {
-        if (!kIsWeb) {
-          controller.clearFocus();
-        }
-      },
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
@@ -52,11 +46,7 @@ class _HtmlEditorExampleState extends ConsumerState<HtmlEditorExample> {
             IconButton(
                 icon: Icon(Icons.refresh),
                 onPressed: () {
-                  if (kIsWeb) {
-                    controller.reloadWeb();
-                  } else {
-                    controller.editorController!.reload();
-                  }
+                  controller.reloadWeb();
                 })
           ],
         ),
