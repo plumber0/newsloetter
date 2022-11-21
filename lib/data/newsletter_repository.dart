@@ -21,7 +21,11 @@ class NewsLetterRepository {
 
 final NewsLetterProvider = Provider<NewsLetterRepository>((ref) {
   const endpoint = String.fromEnvironment('endpoint');
-  return NewsLetterRepository(endpoint: endpoint);
+  if (endpoint=='staging.data.deepnatural.ai') {
+    return NewsLetterRepository(endpoint: endpoint);
+  } else {
+    return NewsLetterRepository(endpoint: 'staging.data.deepnatural.ai');
+  }
 });
 
 final getHtmlProvider = FutureProvider<String>((ref) async {
