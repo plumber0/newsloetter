@@ -1,0 +1,29 @@
+import 'dart:convert';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
+
+class NewsLetterRepository {
+  NewsLetterRepository({required this.endpoint});
+
+  final String endpoint;
+
+  Future<String> getHtml() async {
+    var url = Uri.https(endpoint, 'newsletter');
+    var response = await http.get(url);
+    if (response.statusCode != 200) {
+      throw Exception('Request failed');
+    }
+    final result = jsonDecode(utf8.decode(response.bodyBytes));
+    return result['html_content'];
+  }
+}
+
+final NewsLetterProvider = Provider<NewsLetterRepository>((ref) {
+  const endpoint = String.fromEnvironment('endpoint');
+  return NewsLetterRepository(endpoint: endpoint);
+});
+
+final getHtmlProvider = FutureProvider<String>((ref) async {
+  final newsLetterRepository = ref.watch(NewsLetterProvider);
+  return newsLetterRepository.getHtml();
+});
