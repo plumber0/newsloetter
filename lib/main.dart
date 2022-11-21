@@ -2,9 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html_editor/presentation/home_screen.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   registerErrorHandlers();
+  setPathUrlStrategy();
   runApp(ProviderScope(child: HomeScreen()));
 }
 
