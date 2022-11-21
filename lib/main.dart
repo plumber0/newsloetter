@@ -40,8 +40,6 @@ class HtmlEditorExampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '딥네츄럴 뉴스레터 생성기',
-      theme: ThemeData(),
-      darkTheme: ThemeData.dark(),
       home: HtmlEditorExample(title: '딥네츄럴 뉴스레터 에디터'),
     );
   }
