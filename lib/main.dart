@@ -79,62 +79,8 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
                   //by default
                   toolbarType: ToolbarType.nativeScrollable,
                   //by default
-                  onButtonPressed:
-                      (ButtonType type, bool? status, Function? updateStatus) {
-                    print(
-                        "button '${describeEnum(type)}' pressed, the current selected status is $status");
-                    return true;
-                  },
-                  onDropdownChanged: (DropdownType type, dynamic changed,
-                      Function(dynamic)? updateSelectedItem) {
-                    print(
-                        "dropdown '${describeEnum(type)}' changed to $changed");
-                    return true;
-                  },
-                  mediaLinkInsertInterceptor:
-                      (String url, InsertFileType type) {
-                    print(url);
-                    return true;
-                  },
-                  mediaUploadInterceptor:
-                      (PlatformFile file, InsertFileType type) async {
-                    print(file.name); //filename
-                    print(file.size); //size in bytes
-                    print(file.extension); //file extension (eg jpeg or mp4)
-                    return true;
-                  },
                 ),
-                otherOptions: OtherOptions(height: 550),
-                callbacks: Callbacks(onChangeContent: (String? changed) {
-                  print('content changed');
-                }, onChangeCodeview: (String? changed) {
-                  print('code changed');
-                }, onChangeSelection: (EditorSettings settings) {
-                  print('parent element is ${settings.parentElement}');
-                  print('font name is ${settings.fontName}');
-                }, onDialogShown: () {
-                  print('dialog shown');
-                },
-                    //this is commented because it overrides the default Summernote handlers
-                    /*onImageLinkInsert: (String? url) {
-                    print(url ?? "unknown url");
-                  },
-                  onImageUpload: (FileUpload file) async {
-                    print(file.name);
-                    print(file.size);
-                    print(file.type);
-                    print(file.base64);
-                  },*/
-                    onImageUploadError: (FileUpload? file, String? base64Str,
-                        UploadError error) {
-                  print(describeEnum(error));
-                  print(base64Str ?? '');
-                  if (file != null) {
-                    print(file.name);
-                    print(file.size);
-                    print(file.type);
-                  }
-                }),
+                otherOptions: OtherOptions(height: 1000),
               ),
             ],
           ),
