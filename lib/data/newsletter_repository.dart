@@ -11,9 +11,10 @@ class NewsLetterRepository {
     var url = Uri.https(endpoint, 'newsletter');
     var response = await http.get(url);
     if (response.statusCode != 200) {
-      throw Exception('Request failed');
+      throw Exception('데이터를 가져오는데 실패했어요!');
     }
     final result = jsonDecode(utf8.decode(response.bodyBytes));
+    await Future.delayed(const Duration(seconds: 1));
     return result['html_content'];
   }
 }
