@@ -7,7 +7,6 @@ import '../util/async_value_widget.dart';
 import 'html_edit_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +18,6 @@ class HomeScreen extends StatelessWidget {
 
 class HtmlEditorExample extends ConsumerStatefulWidget {
   HtmlEditorExample({Key? key, required this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -27,7 +25,6 @@ class HtmlEditorExample extends ConsumerStatefulWidget {
 }
 
 class _HtmlEditorExampleState extends ConsumerState<HtmlEditorExample> {
-  String result = '';
   final HtmlEditorController controller = HtmlEditorController();
 
   @override
