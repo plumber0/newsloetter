@@ -32,6 +32,8 @@ dependencies:
   flutter:
     sdk: flutter
   html_editor_enhanced: ^2.5.0
+  http: ^0.13.4
+  flutter_riverpod: ^2.0.0
 
 
 
