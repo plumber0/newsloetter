@@ -14,7 +14,7 @@ class NewsLetterRepository {
       throw Exception('데이터를 가져오는데 실패했어요!');
     }
     final result = jsonDecode(utf8.decode(response.bodyBytes));
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     return result['html_content'];
   }
 }
