@@ -24,7 +24,7 @@ final NewsLetterProvider = Provider<NewsLetterRepository>((ref) {
   if (endpoint=='staging.data.deepnatural.ai') {
     return NewsLetterRepository(endpoint: endpoint);
   } else {
-    return NewsLetterRepository(endpoint: 'staging.data.deepnatural.ai');
+    return NewsLetterRepository(endpoint: 'data.deepnatural.ai');
   }
 });
 
