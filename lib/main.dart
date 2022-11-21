@@ -1,10 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:html_editor/data/newsletter_repository.dart';
 import 'package:html_editor/presentation/html_edit_screen.dart';
+import 'package:html_editor/util/async_value_widget.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:file_picker/file_picker.dart';
 
-void main() => runApp(HtmlEditorExampleApp());
+void main() => runApp(ProviderScope(child: HtmlEditorExampleApp()));
 
 class HtmlEditorExampleApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,21 +22,22 @@ class HtmlEditorExampleApp extends StatelessWidget {
   }
 }
 
-class HtmlEditorExample extends StatefulWidget {
+class HtmlEditorExample extends ConsumerStatefulWidget {
   HtmlEditorExample({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _HtmlEditorExampleState createState() => _HtmlEditorExampleState();
+  ConsumerState createState() => _HtmlEditorExampleState();
 }
 
-class _HtmlEditorExampleState extends State<HtmlEditorExample> {
+class _HtmlEditorExampleState extends ConsumerState<HtmlEditorExample> {
   String result = '';
   final HtmlEditorController controller = HtmlEditorController();
 
   @override
   Widget build(BuildContext context) {
+    final htmlResult = ref.watch(getHtmlProvider);
     return GestureDetector(
       onTap: () {
         if (!kIsWeb) {
@@ -63,8 +67,12 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
           child: Text(r'<\>',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         ),
-        body: HtmlEditScreen(
-          controller: controller,
+        body: AsyncValueWidget(
+          value: htmlResult,
+          data: (html) => HtmlEditScreen(
+            initialText: html,
+            controller: controller,
+          ),
         ),
       ),
     );
